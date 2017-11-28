@@ -190,7 +190,7 @@ namespace Hdf5DotNetTools
                     //ulong c_s = Math.Min(1000, pow);
                     ulong[] chunk_size = new ulong[] { pow };
                     //chunk_size[0] = ulong.Parse(Console.ReadLine());
-                    Console.WriteLine("Auto-Chunking with chunk-size of {0} samples.",pow);
+                    //Console.WriteLine("Auto-Chunking with chunk-size of {0} samples.",pow);
                     dcpl = create_property(chunk_size);
                 }
                 else

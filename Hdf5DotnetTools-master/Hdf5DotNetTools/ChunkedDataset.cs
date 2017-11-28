@@ -28,14 +28,14 @@ namespace Hdf5DotNetTools
         /// <param name="name"></param>
         /// <param name="groupId"></param>
         /// <param name="chunckSize"></param>
-        public ChunkedDataset(string name, hid_t groupId, ulong[] chunckSize)
+        public ChunkedDataset(string name, hid_t groupId, ulong[] chunkSize)
         {
             //Datasetname = Hdf5.ToHdf5Name(name);
             Datasetname = name;
             GroupId = groupId;
             datatype = Hdf5.GetDatatype(typeof(T));
             typeId = H5T.copy(datatype);
-            chunkDims = chunckSize;
+            chunkDims = chunkSize;
         }
 
         /// <summary>
@@ -44,6 +44,8 @@ namespace Hdf5DotNetTools
         /// <param name="name"></param>
         /// <param name="groupId"></param>
         /// <param name="dataset"></param>
+        /// Sequence could be changed so that the syntax remains consistent with other functions of library
+        /// SUGGESTED:  public ChunkedDataset( hid_t groupId, string name, T[,] dataset)...
         public ChunkedDataset(string name, hid_t groupId, T[,] dataset) : this(name, groupId, new ulong[] { Convert.ToUInt64(dataset.GetLongLength(0)), Convert.ToUInt64(dataset.GetLongLength(1)) })
         {
             FirstDataset(dataset);
